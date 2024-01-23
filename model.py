@@ -9,7 +9,7 @@ from sklearn.model_selection import StratifiedKFold
 from scipy.stats import mannwhitneyu
 
 def seq_to_kmerdict(df, k):
-    df_sub_copy = df[["Chr", "Pos", "Ref", "DNA.Disease.impact.score", "Individual.id", "Proband", "sequence", "GC_100bp"]].copy()
+    df_sub_copy = df[["Proband", "sequence", "GC_100bp"]].copy()
     seqs = list(df_sub_copy["sequence"])
 
     kmer_dict = {} # Key: kmer, value: array of counts in each sequence
