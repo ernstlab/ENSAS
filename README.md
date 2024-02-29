@@ -1,4 +1,4 @@
-# ASDmodel
+# ENSAS - Expression Neighborhoood Sequence Association Study
 Identifying associations of de novo noncoding variants with autism through integration of gene expression, sequence and sex information
 
 ## Requirements
