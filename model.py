@@ -106,6 +106,8 @@ sys.stdout = open(output, "w+")
 
 gene_matrix = pd.read_csv(gene_file, sep='\t', index_col=0)
 df = pd.read_csv(variants, index_col=0).reset_index(drop=True)
+if "GC_100bp" not in df.columns:
+    df["GC_100bp"] = [item.count('G') + item.count('C') for item in df["sequence"]]
 df_kmers, features = seq_to_kmerdict(df, k)
 
 all_genes = gene_matrix.index
