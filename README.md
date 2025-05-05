@@ -29,7 +29,7 @@ options:
                         Length of k-mers, default 6
 ```
 
-The input variants file must have columns "Proband" (binary proband-sibling phenotype labels), "sequence" (DNA sequence) and "GC_100bp" (GC content of corresponding DNA sequence). Sample files can be found in the ```data``` folder. 
+The input variants file must have columns "Proband" (binary proband-sibling phenotype labels) and "sequence" (DNA sequence). Sample files can be found in the ```data``` folder. 
 The gene matrix file must be tab-delimited, with a header and an index column. A sample gene matrix file can be found in the ```data``` folder.
 
 ## Output format
