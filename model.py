@@ -32,7 +32,7 @@ def seq_to_kmerdict(df, k):
     return df_sub_copy, all_kmers
 
 
-def find_k_closest(gene, variants, k, gene_matrix):
+def find_k_closest(gene, variants, k, gene_matrix, gene_col):
     # Find the k variants closest to target gene
     cnt = 0
     top_genes = gene_matrix.loc[gene].sort_values(ascending=False)
@@ -41,7 +41,7 @@ def find_k_closest(gene, variants, k, gene_matrix):
     variants_index = []
     while cnt < k:
         current_gene = top_genes_list[current_gene_index]
-        variants_with = variants[variants["GeneNAMEOuterTSS"] == current_gene]
+        variants_with = variants[variants[gene_col] == current_gene]
         if cnt + len(variants_with) <= k:
             variants_index += list(variants_with.index)
         else:
@@ -91,6 +91,8 @@ parser.add_argument('-g', '--genes', help="Gene matrix file", nargs='?')
 parser.add_argument('-o', '--output', help="Output path", nargs='?')
 parser.add_argument('-n', '--neighbors', help="Size of each neighborhood, default 1000", nargs='?', type=int, default=1000, const=1000)
 parser.add_argument('-k', '--kmer', help="Length of k-mers, default 6", nargs='?', type=int, default=6, const=6)
+parser.add_argument('-c', '--gene_col', help="Column for gene assignment, default: GeneNAMEOuterTSS", nargs='?', type=str, default="GeneNAMEOuterTSS", const="GeneNAMEOuterTSS")
+
 
 
 args = parser.parse_args()
@@ -99,6 +101,7 @@ k = args.kmer
 n_neighbors = args.neighbors
 gene_file = args.genes
 variants = args.variants
+gene_col = args.gene_col
 
 sys.stdout = open(output, "w+")
 
@@ -115,7 +118,7 @@ all_genes = gene_matrix.index
 sys.stdout.write("Gene\tGC_u\tGC_p\tKmer_u_fold\tKmer_p_fold\tGC_u_fold\tGC_p_fold\n")
 for gene in all_genes:
     try:
-        neighbors, corr = find_k_closest(gene, df, n_neighbors, gene_matrix)
+        neighbors, corr = find_k_closest(gene, df, n_neighbors, gene_matrix, gene_col)
     except KeyError:
         continue
     train_data = df_kmers.iloc[list(neighbors.index)].copy()
