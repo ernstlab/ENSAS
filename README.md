@@ -13,7 +13,7 @@ scipy==1.12.0
 ## Basic usage
 ```
 usage: model.py [-h] [-v [VARIANTS]] [-g [GENES]] [-o [OUTPUT]]
-                [-n [NEIGHBORS]] [-k [KMER]]
+                [-n [NEIGHBORS]] [-k [KMER]] [-c [GENE_COL]]
 
 options:
   -h, --help            show this help message and exit
@@ -22,14 +22,16 @@ options:
   -g [GENES], --genes [GENES]
                         Gene matrix file
   -o [OUTPUT], --output [OUTPUT]
-                        Output file
+                        Output path
   -n [NEIGHBORS], --neighbors [NEIGHBORS]
                         Size of each neighborhood, default 1000
   -k [KMER], --kmer [KMER]
                         Length of k-mers, default 6
+  -c [GENE_COL], --gene_col [GENE_COL]
+                        Column for gene assignment, default: GeneNAMEOuterTSS
 ```
 
-The input variants file must have columns "Proband" (binary proband-sibling phenotype labels) and "sequence" (DNA sequence). Sample files can be found in the ```data``` folder. 
+The input variants file must have columns "Proband" (binary proband-sibling phenotype labels), "sequence" (DNA sequence), and a column specifying gene assignment for each variant (default: "GeneNAMEOuterTSS"). Sample files can be found in the ```data``` folder. 
 The gene matrix file must be tab-delimited, with a header and an index column. A sample gene matrix file can be found in the ```data``` folder.
 
 ## Output format
