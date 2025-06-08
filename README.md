@@ -1,6 +1,6 @@
 # ENSAS - Expression Neighborhood Sequence Association Study
 Identifying associations of de novo noncoding variants with phenotypes through integration of gene expression, sequence and sex information
-https://www.biorxiv.org/content/10.1101/2024.03.20.585624v1
+https://doi.org/10.1186/s13059-025-03619-1
 
 ## Requirements
 ```
